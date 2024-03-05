@@ -1,0 +1,93 @@
+<p>Json data</p>
+<div>
+    <button class="btn btn-sm btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Record
+    </button>
+    <!--  modal start -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 bg-primary w-100 text-white " id="exampleModalLabel">Add Record/Update Record</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" [formGroup]="addForm" (ngSubmit)="addData()">
+                   <div>
+                    <input type="text" class="form-control" name="name" placeholder="Enter Name" formControlName="name">
+                    <span *ngIf="addForm.controls['name'] && addForm.controls['name'].invalid && addForm.controls['name'].touched">*Invalid Name</span><br><br>
+                   </div>
+                   <div>
+                    <input type="email" class="form-control" name="email" placeholder="Enter Email" formControlName="email"> 
+                    <span *ngIf="addForm.controls['email'] && addForm.controls['email'].invalid && addForm.controls['email'].touched">*Invalid Email</span><br> <br>
+                   </div>
+                    <div>
+                        <input type="number" class="form-control" name="age" placeholder="Enter Age" formControlName="age">
+                        <span *ngIf="addForm.controls['age'] && addForm.controls['age'].invalid && addForm.controls['age'].touched">*Invalid Age</span><br> <br>
+                    </div>
+                    <div>
+                        <input type="text" class="form-control" name="city" placeholder="Enter City" formControlName="city"> 
+                        <span *ngIf="addForm.controls['city'] && addForm.controls['city'].invalid && addForm.controls['city'].touched">*Invalid City</span><br> <br>
+                    </div>
+                   <div>
+                    <input type="text" class="form-control" name="country" placeholder="Enter Country" formControlName="country"> 
+                    <span *ngIf="addForm.controls['country'] && addForm.controls['country'].invalid && addForm.controls['country'].touched">*Invalid Country</span><br> <br>
+                   </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" (click)="addData()"[disabled]="addForm.invalid" *ngIf=!isDisabled>Save Data</button>
+                    <button type="button" class="btn btn-primary" (click)="editData(addForm.value)" [disabled]="addForm.invalid"*ngIf=isDisabled>Update Data</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  modal end -->
+
+    <!-- Edit modal start -->
+    <!-- <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 bg-primary w-100 text-white " id="exampleModalLabel">Update Record</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" [formGroup]="addForm">
+                    <input type="text" name="name" placeholder="Enter Name"formControlName="name"> <br> <br>
+                    <input type="email" name="email" placeholder="Enter Email"formControlName="email"> <br> <br>
+                    <input type="number" name="age" placeholder="Enter Age"formControlName="age"> <br> <br>
+                    <input type="text" name="city" placeholder="Enter City"formControlName="city"> <br> <br>
+                    <input type="text" name="country" placeholder="Enter Country"formControlName="country"> <br> <br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- Edit Modal end -->
+</div>
+<table class="table bg-primary text-white">
+    <tr>
+        <th>S.No.</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Age</th>
+        <th>City</th>
+        <th>Country</th>
+    </tr>
+        <tr *ngFor="let item of emp;let i=index">
+            <ng-container>
+                <td>{{i+1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.age}}</td>
+                <td>{{item.city}}</td>
+                <td>{{item.country}}</td>
+                <td>
+                    <button  class="btn btn-sm btn-primary" (click)="hiddenRow(i)">Delete</button>
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:100%" (click)="updateData(i,item)">Edit</button>
+                </td>    
+            </ng-container>
+        </tr>
+</table>

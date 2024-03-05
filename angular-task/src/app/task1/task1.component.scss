@@ -1,0 +1,19 @@
+table{
+    border: 1px solid black;
+    width: 80%;
+    justify-content: center;
+    border-collapse: collapse;
+    
+}
+td,th{
+    border: 1px solid black;
+    text-align: center;
+    border-collapse:collapse;
+}
+input.ng-invalid.ng-touched{
+    border: 2px solid red;
+}
+span{
+    color: red;
+
+}
