@@ -204,7 +204,7 @@ export class TaskComponent {
     ]
 
   addUser:any= new FormGroup({
-    id: new FormControl(this.employees.length+1,[Validators.required]),
+    id: new FormControl(this.employees.length+1),
     name: new FormControl('',[Validators.required]),
     email: new FormControl('',[Validators.required,Validators.email]),
     age: new FormControl('',[Validators.required]),
@@ -223,10 +223,7 @@ export class TaskComponent {
     // }
   }
 
-  deleteEmployee(index: number) {
-    this.employees.splice(index, 1);
-  }
-
+  
   updateEmployee(index: number) {
     // console.log("Printed");
     console.log(index);
@@ -243,9 +240,9 @@ export class TaskComponent {
 
   updateEmployeeData() {
     const updatedEmployeeData = this.addUser.value;
-
+    
     const index = this.employees.findIndex(employee => employee.id === updatedEmployeeData.id);
-  
+    
     if (index !== -1) {
       this.employees[index] = {
         id: updatedEmployeeData.id,
@@ -257,20 +254,11 @@ export class TaskComponent {
       };
       
       this.addUser.reset();
-  
+      
     }
   }   
-
-  // updateEmployee(index: number) {
-  //   console.log(index);
-  //   this.addUser.patchValue({
-  //     id: employee.id,
-  //     name: employee.name,
-  //     email: employee.email,
-  //     age: employee.age,
-  //     city: employee.city,
-  //     country: employee.country
-  //   });
-  // }
-
+  deleteEmployee(index: number) {
+    this.employees.splice(index, 1);
+  }
+  
 }
