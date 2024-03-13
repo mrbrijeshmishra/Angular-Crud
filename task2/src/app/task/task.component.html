@@ -1,16 +1,14 @@
-<h1>Table Records</h1>
-
-<!-- Button trigger modal -->
-&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Add Record
-</button>
+<h1 class="text-center">Table Records</h1>
+<br>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <h1 class="modal-title fs-5 " id="exampleModalLabel">
+                    Add Record
+                </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -32,7 +30,7 @@
                     <br>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" [disabled]="addUser.invalid">Save changes</button>
+                        <button type="submit" class="btn btn-primary" [disabled]="addUser.invalid">Add Record</button>
                     </div>
                 </form>
             </div>
@@ -40,64 +38,69 @@
     </div>
 </div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>S.No</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Age</th>
-            <th>City</th>
-            <th>Country</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let employee of employees; let i=index;">
-            <td>{{i+1}}</td>
-            <td>{{employee.name}}</td>
-            <td>{{employee.email}}</td>
-            <td>{{employee.age}}</td>
-            <td>{{employee.city}}</td>
-            <td>{{employee.country}}</td>
-            <td>
-                <button type="submit" (click)="deleteEmployee(i)">Delete</button> &nbsp; &nbsp;
-                <!-- Button trigger modal -->
-                <button type="submit" class="btn btn-primary" (click)="updateEmployee(i)" data-bs-toggle="modal"
-                    data-bs-target="#staticBackdrop">
-                    Update
-                </button>
-            </td>
-        </tr>
-    </tbody>
-    <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Update</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form [formGroup]="addUser">
-                        <input type="text" name="name" placeholder="Enter Name" class="w-100" id="name"
-                            formControlName="name"> <br> <br>
-                        <input type="email" name="email" placeholder="Enter Email" class="w-100" id="email"
-                            formControlName="email"> <br> <br>
-                        <input type="number" name="age" placeholder="Enter Age" class="w-100" id="age"
-                            formControlName="age"> <br> <br>
-                        <input type="text" name="city" placeholder="Enter City" class="w-100" id="city"
-                            formControlName="city"> <br> <br>
-                        <input type="text" name="country" placeholder="Enter Country" id="country" class="w-100"
-                            formControlName="country"> <br> <br>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" [disabled]="addUser.invalid" (click)="updateEmployeeData()">Update Record</button>
+<div class="table-data">
+    <button type="button" class="btn btn-primary add-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Add Record
+    </button> <br> <br>
+    <table class="table">
+        <thead>
+            <tr class="text-center">
+                <th>S.No</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>City</th>
+                <th>Country</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="text-center" *ngFor="let employee of employees; let i=index;">
+                <td>{{i+1}}</td>
+                <td>{{employee.name}}</td>
+                <td>{{employee.email}}</td>
+                <td>{{employee.age}}</td>
+                <td>{{employee.city}}</td>
+                <td>{{employee.country}}</td>
+                <td>
+                    <button type="submit" class="btn btn-success text-white" (click)="updateEmployee(i)" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop">
+                        Update
+                    </button> &nbsp; &nbsp;
+                    <button type="submit" class="btn btn-danger" (click)="deleteEmployee(i)">Delete</button> 
+                    <!-- Button trigger modal -->
+                </td>
+            </tr>
+        </tbody>
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Update</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form [formGroup]="addUser">
+                            <input type="text" name="name" placeholder="Enter Name" class="w-100" id="name"
+                                formControlName="name"> <br> <br>
+                            <input type="email" name="email" placeholder="Enter Email" class="w-100" id="email"
+                                formControlName="email"> <br> <br>
+                            <input type="number" name="age" placeholder="Enter Age" class="w-100" id="age"
+                                formControlName="age"> <br> <br>
+                            <input type="text" name="city" placeholder="Enter City" class="w-100" id="city"
+                                formControlName="city"> <br> <br>
+                            <input type="text" name="country" placeholder="Enter Country" id="country" class="w-100"
+                                formControlName="country"> <br> <br>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" [disabled]="addUser.invalid" (click)="updateEmployeeData()">Update Record</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</table>
+    </table>
+</div>
