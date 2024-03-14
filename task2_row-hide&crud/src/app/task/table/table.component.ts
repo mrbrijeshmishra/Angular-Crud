@@ -207,7 +207,8 @@ export class TableComponent {
     employeez = this.employees.map((employee) => ({ ...(employee), visibility: true }));
 
   addUser: any = new FormGroup({
-    id: new FormControl(this.employeez.length+1),
+    //id: new FormControl(this.employeez.length+1),
+    id: new FormControl(''),
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     age: new FormControl('', [Validators.required]),
